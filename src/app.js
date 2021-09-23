@@ -6,8 +6,9 @@ const indexRoutes = require('./routes/index')
 
 //configuraciones
 app.set('port', process.env.PORT || 3000);
-mongoose.connect('mongodb+srv://root:toor@cluster1.z3h0q.mongodb.net/Cluster1?retryWrites=true&w=majority')
-  .then(db => console.log('Connected'))
+mongoose.connect('mongodb+srv://root:toor@cluster0.q692i.mongodb.net/Cluster0?retryWrites=true&w=majority')
+  //  mongoose.connect('mongodb://localhost:localhost:27017/mevn-parqueadero')
+  .then(db => console.log('mi base Connected'))
   .catch(err => console.log(err))
 
 //middlewares 

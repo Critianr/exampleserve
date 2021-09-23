@@ -7,6 +7,7 @@ const Item = require('../models/item');
 router.get('/', async (req, res)=>{
     const items = await Item.find();
     res.send(items);
+    console.log('ya llego')
 });
 // peticion post req/ el que me trae la informacion
 router.post('/', async (req, res)=>{
@@ -19,4 +20,5 @@ router.get('/:id', async (req, res)=>{
     const item = await Item.findById(req.params.id);
     res.send(item);
 });
+
 module.exports = router;
