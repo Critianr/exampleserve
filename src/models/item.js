@@ -1,28 +1,22 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ticketIniSchema = new Schema({
+const ticketSchema = new Schema({
     id: Number,
     placa: String,
-    nombre: String,
     tiempoInicio: Date,
     TipoVehiculo: String,
-    Puesto: Number
-});
-const ticketFinSchema = new Schema({
-    id: Number,
-    placa: String,
-    tiempoliquidar: Date,
-    TipoVehiculo: String,
-    Puesto: Number
-});
-const liquidacioSchema = new Schema({
+    Puesto: Number,
     tiempoFinal: Date,
-    Puesto: Number
+    valorP: Number,
+    Tarifa: Number
 });
-// const tarifas = new Schema({
-//     carros: 78,
-//     moto:  58,
-
-// });
-module.exports = mongoose.model('ticketInicial', ticketIniSchema, 'datosLiquidacion' , liquidacioSchema, 'ticketfinal', ticketFinSchema);
+const tarifaSchema = new Schema({
+    carros: Number,
+    moto:  Number
+});
+const LoginSchema = new Schema({
+    user: String,
+    pasword: String  
+})
+module.exports = mongoose.model('Ticket', ticketSchema, 'Tarifas', tarifaSchema, 'UserLog', LoginSchema );
