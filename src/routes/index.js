@@ -1,22 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const authservice = require('../services/auth.service');
-const Item = require('../models/item');
+const ticketSchema = require('../models/tickets');
 const User = require('../models/user');
 const { token } = require('morgan');
 // peticion get
-// res se envia
+// // res se envia
 // router.get('/', async (req, res)=>{
 //     const items = await Item.find();
 //     res.send(items);
 //     console.log('ya llego')
 // });
 // peticion post req/ el que me trae la informacion
-router.post('/', async (req, res)=>{
-    // res.send(new Item(req.body));
-    const item = await new Item.find(req.body);
+router.post('/ticket', async (req, res)=>{
+    const item = await new ticketSchema (req.body);
     await item.save();
-    res.send(item);
+    res.json({status: 'task saved'});
 });
 router.get('/:id', async (req, res)=>{
     const item = await Item.findById(req.params.id);
