@@ -10,7 +10,7 @@ mongoose.connect('mongodb+srv://root:toor@cluster0.q692i.mongodb.net/Cluster0?re
   //  mongoose.connect('mongodb://localhost:localhost:27017/mevn-parqueadero')
   .then(db => console.log('mi base Connected'))
   .catch(err => console.log(err))
-
+  app.use(express.static(__dirname ));
 //middlewares 
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
