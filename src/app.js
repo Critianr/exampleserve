@@ -15,7 +15,8 @@ mongoose.connect('mongodb+srv://root:toor@cluster0.q692i.mongodb.net/Cluster0?re
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 //rutas
-app.use('/items/', indexRoutes)
+// app.use('/items/', indexRoutes)
+app.use('/', indexRoutes);
 
 app.listen(app.get('port'), ()=>{
     console.log('Server started');
