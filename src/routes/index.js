@@ -12,7 +12,7 @@ const { token } = require('morgan');
 //     console.log('ya llego')
 // });
 // peticion post req/ el que me trae la informacion
-router.post('/ticket', async (req, res)=>{
+router.post('/', async (req, res)=>{
     const item = await new ticketSchema (req.body);
     await item.save();
     res.json({status: 'task saved'});
