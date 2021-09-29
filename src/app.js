@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended: false}));
 
 //rutas
 // app.use('/items/', indexRoutes)
-app.use('/', indexRoutes);
+app.use('/tickets', indexRoutes);
 
 app.listen(app.get('port'), ()=>{
     console.log('Server started');
