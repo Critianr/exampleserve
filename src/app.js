@@ -21,5 +21,5 @@ app.use(express.static(__dirname ));
 app.use('/', indexRoutes);
 
 app.listen(app.get('port'), ()=>{
-    console.log('Server started');
+    console.log('Server started', app.get('port'));
 });
