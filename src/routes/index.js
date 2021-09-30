@@ -17,10 +17,10 @@ router.post('/tickets', async (req, res)=>{
     await item.save();
     res.json({status: 'task saved'});
 });
-router.get('/:id', async (req, res)=>{
-    const item = await Item.findById(req.params.id);
-    res.send(item);
-});
+// router.get('/:id', async (req, res)=>{
+//     const item = await Item.findById(req.params.id);
+//     res.send(item);
+// });
 // ---------------------------------------- auth route
 router.post('/login', async (req, res)=>{
     try{
