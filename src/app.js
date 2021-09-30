@@ -18,7 +18,7 @@ app.use(express.static(__dirname ));
 
 //rutas
 // app.use('/items/', indexRoutes)
-app.use('/tickets', indexRoutes);
+app.use('/', indexRoutes);
 
 app.listen(app.get('port'), ()=>{
     console.log('Server started');
