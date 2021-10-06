@@ -7,20 +7,65 @@ const { token } = require('morgan');
 // peticion get
 // // res se envia
 router.get('/tickets', async (req, res)=>{
-    const items = await ticketSchema.find();
-    res.send(items);
-    console.log('ya llego')
+    const ticketdb = await ticketSchema.find();
+    res.send(ticketdb);
+    console.log(ticketdb)
 });
 // peticion post req/ el que me trae la informacion
-// router.post('/tickets', async (req, res)=>{
-//     const item = await new ticketSchema (req.body);
-//     await item.save();
-//     res.json({status: 'task saved'});
-// });
-router.get('/:id', async (req, res)=>{
-    const item = await ticketSchema.findById(req.params.id);
-    res.send(item);
+router.post('/nuevoticket', async (req, res)=>{
+    const body = req.body; 
+    const ticket = await new ticketSchema(body);
+    await ticket.save();
+    res.json({status: 'task saved'});
+    console.log(ticket)
 });
+router.put('/tickets/placa/:placa', async (req, res)=>{
+    const placa = req.params.placa;
+    const body = req.body;
+    try{
+    const item = await ticketSchema.findOneAndUpdate({placa:placa}, body, {new:true});
+    res.json(item);
+    console.log(item)
+    }catch (error){
+        console.log(error)
+        // return res.status(400).json({
+        //     mensaje:'ocurrio un error',
+        //     error: error
+        // })
+    }
+});
+
+router.get('/tickets/:id', async(req, res) => {
+    const _id = req.params.id;
+    try {
+    const notaDB = await ticketSchema.findOne({_id});
+    res.json(notaDB);
+    } catch (error) {
+    return res.status(400).json({
+    mensaje: 'Ocurrio un error',
+    error
+    })
+    }
+   });
+router.get('/tickets/placa/:placa', async (req, res)=>{
+    const placa = req.params.placa;
+    try{ 
+        const item = await ticketSchema.find({placa: placa});
+        res.send(item);
+        console.log(item)
+    }catch (error) {
+        return res.status(400).json({
+        mensaje: 'Ocurrio un error',
+        error: error
+    })
+    }
+});
+// router.get('/tickets/:id', async (req, res)=>{
+//     const item = await ticketSchema.findOne(req.params.id);
+//     res.send(item);
+//     console.log(item)
+// });
+
 // ---------------------------------------- auth route
 // router.post('/login', async (req, res)=>{
 //     try{

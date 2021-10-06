@@ -1,9 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const morgan = require('morgan')
+const morgan = require('morgan');
+const cors = require('cors');
 const app = express();
 const indexRoutes = require('./routes/index')
-const ticketSchema = require('../src/models/tickets');
 //configuraciones
 app.set('port', process.env.PORT || 3000);
 mongoose.connect('mongodb+srv://root:toor@cluster0.q692i.mongodb.net/Cluster0?retryWrites=true&w=majority')
@@ -13,17 +13,15 @@ mongoose.connect('mongodb+srv://root:toor@cluster0.q692i.mongodb.net/Cluster0?re
 
 //middlewares 
 app.use(morgan('dev'));
+app.use(cors());
+app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-app.use(express.static(__dirname ));
+
+app.use(express.static(__dirname + '/public'));
 
 //rutas
 // app.use('/items/', indexRoutes)
-app.use('/', indexRoutes);
-router.post('/tickets', async (req, res)=>{
-    const item = await new ticketSchema (req.body);
-    await item.save();
-    res.json({status: 'task saved'});
-});
+app.use('/api', indexRoutes);
 
 app.listen(app.get('port'), ()=>{
     console.log('Server started', app.get('port'));
