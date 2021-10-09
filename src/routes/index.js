@@ -23,15 +23,17 @@ router.put('/tickets/placa/:placa', async (req, res)=>{
     const placa = req.params.placa;
     const body = req.body;
     try{
-    const item = await ticketSchema.findOneAndUpdate({placa:placa}, body, {new:true});
+    const item = await ticketSchema.findOneAndUpdate({placa:placa}, body,{new:true}    );
+        //  await item.save();
+    // const item = await ticketSchema.save({placa:placa}, body, {new:true}); //findOneAndUpdate
     res.json(item);
     console.log(item)
     }catch (error){
         console.log(error)
-        // return res.status(400).json({
-        //     mensaje:'ocurrio un error',
-        //     error: error
-        // })
+        return res.status(400).json({
+            mensaje:'ocurrio un error',
+            error: error
+        })
     }
 });
 
