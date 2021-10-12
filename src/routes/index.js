@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const authservice = require('../services/auth.service');
 const ticketSchema = require('../models/tickets');
-const User = require('../models/user');
-const { token } = require('morgan');
 // peticion get
 // // res se envia
 router.get('/tickets', async (req, res)=>{
